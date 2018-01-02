@@ -75,3 +75,37 @@ func main() {
 }
 
 ```
+
+### Send notification to a topic
+
+```go
+
+package main
+
+import (
+	"fmt"
+	"github.com/NyanStudio/goFCM"
+)
+
+const (
+	serverKey = "YOUR_SERVER_KEY"
+)
+
+func main() {
+	cm := new(cloudMessaging.Client)
+
+	cm.SetServerKey(serverKey)
+
+	cm.SetTo("/topics/YOUR_TOPIC")
+
+	cm.SetNotification("title", "body", "", "", "", "", "", "", "", "", "", "", "", "")
+
+	rm, err := cm.SendMessage()
+	if err != nil {
+		fmt.Sprintln("ERR: %v", err)
+	}
+
+	fmt.Sprintln("RM: %v", rm)
+}
+
+```
