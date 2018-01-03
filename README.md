@@ -24,7 +24,7 @@ const (
 )
 
 func main() {
-	cm := new(cloudMessaging.Client)
+	cm := new(fcm.Client)
 
 	cm.SetServerKey(serverKey)
 
@@ -58,7 +58,7 @@ const (
 )
 
 func main() {
-	cm := new(cloudMessaging.Client)
+	cm := new(fcm.Client)
 
 	cm.SetServerKey(serverKey)
 
@@ -92,7 +92,7 @@ const (
 )
 
 func main() {
-	cm := new(cloudMessaging.Client)
+	cm := new(fcm.Client)
 
 	cm.SetServerKey(serverKey)
 
