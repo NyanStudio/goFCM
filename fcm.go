@@ -176,7 +176,7 @@ func (c *Client) SetTimeToLive(timeToLive int) {
 	if timeToLive > 2419200 {
 		c.Message.TimeToLive = 2419200
 	} else {
-		c.Message.TimeToLive = 2419200
+		c.Message.TimeToLive = timeToLive
 	}
 }
 
