@@ -30,7 +30,7 @@ func main() {
 
 	cm.SetTo("REGISTRATION_TOKEN")
 
-	cm.SetNotification("title", "body", "", "", "", "", "", "", "", "", "", "", "", "")
+	cm.SetNotification(fcm.NotificationPayload{Title: "title", Body: "body"})
 
 	rm, err := cm.SendMessage()
 	if err != nil {
@@ -64,7 +64,7 @@ func main() {
 
 	cm.SetRegistrationIds([]string{"REGISTRATION_TOKEN1", "REGISTRATION_TOKEN2"})
 
-	cm.SetNotification("title", "body", "", "", "", "", "", "", "", "", "", "", "", "")
+	cm.SetNotification(fcm.NotificationPayload{Title: "title", Body: "body"})
 
 	rm, err := cm.SendMessage()
 	if err != nil {
@@ -98,7 +98,7 @@ func main() {
 
 	cm.SetTo("/topics/YOUR_TOPIC")
 
-	cm.SetNotification("title", "body", "", "", "", "", "", "", "", "", "", "", "", "")
+	cm.SetNotification(fcm.NotificationPayload{Title: "title", Body: "body"})
 
 	rm, err := cm.SendMessage()
 	if err != nil {

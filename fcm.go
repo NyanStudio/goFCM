@@ -144,21 +144,8 @@ func (c *Client) SetMutableContent(mutableContent bool) {
 }
 
 // SetNotification sets the notification payload
-func (c *Client) SetNotification(title, body, androidChannelID, icon, sound, badge, tag, color, clickAction, subtitle, bodyLocKey, bodyLocArgs, titleLocKey, titleLocArgs string) {
-	c.Message.Notification.Title = title
-	c.Message.Notification.Body = body
-	c.Message.Notification.AndroidChannelID = androidChannelID
-	c.Message.Notification.Icon = icon
-	c.Message.Notification.Sound = sound
-	c.Message.Notification.Badge = badge
-	c.Message.Notification.Tag = tag
-	c.Message.Notification.Color = color
-	c.Message.Notification.ClickAction = clickAction
-	c.Message.Notification.Subtitle = subtitle
-	c.Message.Notification.BodyLocKey = bodyLocKey
-	c.Message.Notification.BodyLocArgs = bodyLocArgs
-	c.Message.Notification.TitleLocKey = titleLocKey
-	c.Message.Notification.TitleLocArgs = titleLocArgs
+func (c *Client) SetNotification(np NotificationPayload) {
+	c.Message.Notification = np
 }
 
 // SetPriority sets the priority of the message
