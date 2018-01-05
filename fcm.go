@@ -65,7 +65,7 @@ type HTTPResponse struct {
 
 // HTTPResponseResult -> Downstream HTTP message response result
 type HTTPResponseResult struct {
-	MessageID      int64  `json:"message_id"`
+	MessageID      string `json:"message_id"`
 	RegistrationID int    `json:"registration_id"`
 	Error          string `json:"error,omitempty"`
 }
