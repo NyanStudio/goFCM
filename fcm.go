@@ -5,6 +5,9 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
+
+	"golang.org/x/net/context"
+	"google.golang.org/appengine/urlfetch"
 )
 
 const (
@@ -87,6 +90,46 @@ func (c *Client) SendMessage() (rm *HTTPResponse, err error) {
 	request.Header.Set("Content-Type", "application/json")
 
 	client := &http.Client{}
+	var response *http.Response
+	response, err = client.Do(request)
+
+	rm.StatusCode = response.StatusCode
+
+	if err != nil {
+		return rm, err
+	}
+	defer response.Body.Close()
+
+	var responseBody []byte
+	if responseBody, err = ioutil.ReadAll(response.Body); err != nil {
+		return rm, err
+	}
+
+	if response.StatusCode != 200 {
+		return rm, nil
+	}
+
+	if err = json.Unmarshal([]byte(responseBody), &rm); err != nil {
+		return rm, err
+	}
+
+	return rm, nil
+}
+
+// SendMessageWithHTTPClient to firebase
+func (c *Client) SendMessageWithHTTPClient(ctx context.Context) (rm *HTTPResponse, err error) {
+	rm = new(HTTPResponse)
+
+	var jsonByte []byte
+	if jsonByte, err = json.Marshal(c.Message); err != nil {
+		return rm, err
+	}
+
+	request, _ := http.NewRequest("POST", httpEndpointURL, bytes.NewBuffer(jsonByte))
+	request.Header.Set("Authorization", "key="+c.ServerKey)
+	request.Header.Set("Content-Type", "application/json")
+
+	client := urlfetch.Client(ctx)
 	var response *http.Response
 	response, err = client.Do(request)
 
