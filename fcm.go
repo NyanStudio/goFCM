@@ -149,7 +149,7 @@ func (c *Client) SendMessageWithHTTPClient(ctx context.Context) (rm *HTTPRespons
 		return rm, nil
 	}
 
-	if err = json.Unmarshal([]byte(responseBody), &rm); err != nil {
+	if err = json.Unmarshal(responseBody, &rm); err != nil {
 		return rm, err
 	}
 
